@@ -1,129 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Sustentabilidade Hoje</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avelino</title>
   <style>
     body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #111;
+      color: white;
+      font-size: 80px;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #eaf5ea;
-      color: #2d4739;
-      text-align: center;
     }
 
-    header {
-      background-color: #1b3c2f;
+    .love {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      width: 0; /* começa "apagado" */
+      white-space: nowrap;
+    }
+
+    .love span {
+      display: inline-block;
+    }
+
+    button {
+      margin-top: 40px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #ff4081;
       color: white;
-      padding: 20px;
+      cursor: pointer;
     }
-
-    h1, h2, p, ul {
-      margin: 0 auto 10px auto;
-      max-width: 700px;
-    }
-
-    .container {
-      padding: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    footer {
-      background-color: #1b3c2f;
-      color: white;
-      padding: 15px;
-      font-size: 0.9em;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    ul li::before {
-      content: "🌱 ";
-    }
-
-    a {
-      color: #1b3c2f;
-      text-decoration: underline;
-      font-weight: bold;
-    }
-
-    .avatar {
-      margin: 20px 0;
-    }
-
-    .avatar img {
-      width: 150px;
-      border-radius: 10px;
-      border: 2px solid #1b3c2f;
-    }
-
-    .avatar p {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .emoji {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+    button:hover {
+      background: #e73370;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🌿 Sustentabilidade Hoje</h1>
-    <p>Por um futuro mais verde e consciente!</p>
-  </header>
-
-  <div class="avatar">
-    <img src="download20250703134332.png" alt="Avatar da Anne">
-    <p>👋 Oi! Eu sou a Taci, e vou te guiar por esse conteúdo 🌱</p>
+  <div class="love" id="love">
+    <span id="letters">EU TE AMO NEGÃO 🥰</span>
   </div>
 
-  <div class="container">
-    <div class="card">
-      <div class="emoji">🌍</div>
-      <h2>O que é Sustentabilidade?</h2>
-      <p>Sustentabilidade é viver em equilíbrio com o meio ambiente, utilizando os recursos naturais com responsabilidade, garantindo bem-estar às futuras gerações.</p>
-    </div>
+  <button id="start">APERTA AQUI AVELINO (SE MOVE)😡</button>
 
-    <div class="card">
-      <div class="emoji">⚠️🗑️🔥</div>
-      <h2>Problemas Atuais</h2>
-      <ul>
-        <li>Poluição da água e do ar</li>
-        <li>Desmatamento e perda da biodiversidade</li>
-        <li>Excesso de lixo e consumo</li>
-        <li>Aquecimento global</li>
-      </ul>
-    </div>
+  <!-- Biblioteca mo.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 
-    <div class="card">
-      <div class="emoji">♻️💧💡</div>
-      <h2>Como Podemos Ajudar?</h2>
-      <ul>
-        <li>Separar e reciclar o lixo corretamente</li>
-        <li>Economizar água e energia</li>
-        <li>Evitar plásticos descartáveis</li>
-        <li>Consumir de forma consciente</li>
-      </ul>
-    </div>
-  </div>
+  <script>
+    const loveBox = document.getElementById("love");
+    const sound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
 
-  <footer>
-    Feito com carinho por Taciane almeida 🌸 | Estudante de Biomedicina - UNIFATECIE 💚<br>
-    Dica: Compartilhe este conteúdo com quem você ama!
-  </footer>
+    // Timeline LOVE escrevendo
+    const crtLoveTl = () => {
+      return new mojs.Tween({
+        duration: 2000,
+        onUpdate: (progress) => {
+          // progress vai de 0 → 1
+          // Aumenta a largura da caixa
+          loveBox.style.width = `${progress * 100}%`;
+        },
+        onComplete: () => {
+          sound.play();
+        }
+      });
+    };
+
+    // Inicia após clique no botão
+    document.getElementById("start").addEventListener("click", () => {
+      crtLoveTl().play();
+    });
+  </script>
 </body>
 </html>
+
